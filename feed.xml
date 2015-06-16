@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Remarkably Restrained</title>
+<subtitle type="text">Thoughts on Simple Software</subtitle>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="/feed.xml" />
+<link rel="alternate" type="text/html" href="" />
+<updated>2015-06-16T17:55:16+02:00</updated>
+<id>/</id>
+<author>
+  <name>RR</name>
+  <uri>/</uri>
+  <email></email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Some thoughts on Software Development]]></title>
+  <link rel="alternate" type="text/html" href="/articles/some-thoughts" />
+  <id>/articles/some-thoughts</id>
+  <published>2014-06-15T00:00:00+02:00</published>
+  <updated>2014-06-15T00:00:00+02:00</updated>
+  <author>
+    <name>RR</name>
+    <uri></uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;In the past few months I’m having some recurring thoughts and questions&lt;sup id=&quot;fnref:alan-kay&quot;&gt;&lt;a href=&quot;#fn:alan-kay&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. What follows is mostly an attempt to force myself to structure these thougts and reach out to others that may share some insights on the subject. In other words: “warning: incoming rant.”&lt;/p&gt;
+
+&lt;p&gt;The subject of these questions is the current state of our software (I hesitate to say: Software Engineering, but I suppose it is implied). The general theme is: “why is the quality of our software so low?”. Some of the questions are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Why is software generally so slow?&lt;/li&gt;
+  &lt;li&gt;Why does software have so many bugs?&lt;/li&gt;
+  &lt;li&gt;Why can my computer be hacked? Why do virusses exist?&lt;/li&gt;
+  &lt;li&gt;Why do I need to restart my computer for this update? Why do updates exist at all?&lt;/li&gt;
+  &lt;li&gt;Why is software so complex?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assuming the premises are correct (software is generally slow, has many bugs etcetera), the consequences of not answering the questions are quite serious. A few examples:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Unstable and buggy software makes its users feel powerless.&lt;/li&gt;
+  &lt;li&gt;Bad performance means more computers running, which means a greater contribution to the greenhouse effect.&lt;/li&gt;
+  &lt;li&gt;The lack of a workable security model has opened the way for mass surveillance.&lt;/li&gt;
+  &lt;li&gt;Our lives are increasingly dependent on software. This means the above consequences are increasingly severe.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some observations and hints towards the answers:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The answers to the questions may very well be related.&lt;/li&gt;
+  &lt;li&gt;I have approximately 10 years of professional experience, yet I do not have the answers to the above questions ready.&lt;/li&gt;
+  &lt;li&gt;I am not alone. The &lt;a href=&quot;/images/why-does-software-have-bugs-google.png&quot;&gt;top&lt;/a&gt; &lt;a href=&quot;/images/why-does-software-have-bugs-result-1.png&quot;&gt;Google&lt;/a&gt; &lt;a href=&quot;/images/why-does-software-have-bugs-result-2.png&quot;&gt;results&lt;/a&gt; &lt;a href=&quot;/images/why-does-software-have-bugs-result-3.png&quot;&gt;for&lt;/a&gt; “why does software have bugs” are spammy sites. Not serious people seriously answering a serious problem.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A few hints as to the answers:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I do not have a full answer (yet?), but the title of this blog hints at some ideas.&lt;/li&gt;
+  &lt;li&gt;Software Engineering as a field is very forgetful of its past.&lt;/li&gt;
+  &lt;li&gt;We are a young field. There’s a lot of space for cowboys in the west, and in a gold rush it’s often more important who’s first than who’s right.&lt;/li&gt;
+  &lt;li&gt;A lack of ambition keeps us from asking the important questions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I hope to expand on the above in more detail shortly.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:alan-kay&quot;&gt;
+      &lt;p&gt;I’m not quite sure what exactly was at the root of these thoughts, but viewing Alan Kay’s talk at OOPSLA 1997, &lt;a href=&quot;https://www.youtube.com/watch?v=oKg1hTOQXoY&quot;&gt;The computer revolution hasn’t happened yet&lt;/a&gt;, has surely played a role &lt;a href=&quot;#fnref:alan-kay&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/articles/some-thoughts&quot;&gt;Some thoughts on Software Development&lt;/a&gt; was originally published by RR at &lt;a href=&quot;&quot;&gt;Remarkably Restrained&lt;/a&gt; on June 15, 2014.&lt;/p&gt;</content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Remarkably restrained]]></title>
+  <link rel="alternate" type="text/html" href="/articles/remarkably-restrained" />
+  <id>/articles/remarkably-restrained</id>
+  <published>2014-02-24T00:00:00+01:00</published>
+  <updated>2014-02-24T00:00:00+01:00</updated>
+  <author>
+    <name>RR</name>
+    <uri></uri>
+    <email></email>
+  </author>
+  <content type="html">&lt;p&gt;The more we allow our code to say the less we can be say about it.&lt;/p&gt;
+
+&lt;p&gt;We must therefore measure the effectiveness of our tools not by how much we can do with them, but by how much we cannot do.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/articles/remarkably-restrained&quot;&gt;Remarkably restrained&lt;/a&gt; was originally published by RR at &lt;a href=&quot;&quot;&gt;Remarkably Restrained&lt;/a&gt; on February 24, 2014.&lt;/p&gt;</content>
+</entry>
+
+</feed>
