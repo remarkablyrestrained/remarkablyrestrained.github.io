@@ -1,31 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-<title type="text">Remarkably Restrained</title>
-<subtitle type="text">Thoughts on Simple Software</subtitle>
-<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="/feed.xml" />
-<link rel="alternate" type="text/html" href="" />
-<updated>2015-07-03T15:26:01+02:00</updated>
-<id>/</id>
-<author>
-  <name>Remarkably Restrained</name>
-  <uri>/</uri>
-  <email></email>
-</author>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Remarkably Restrained</title>
+    <description>the title is misleading</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 26 Jul 2019 22:49:21 +0200</pubDate>
+    <lastBuildDate>Fri, 26 Jul 2019 22:49:21 +0200</lastBuildDate>
+    <generator>Jekyll v3.4.1</generator>
+    
+      <item>
+        <title>Things I'll never do</title>
+        <description>&lt;p&gt;One of the trueisms of life is that there are always more exiting possibilities and plans than there is available time.&lt;/p&gt;
 
+&lt;p&gt;This means that there are certain exiting plans that will dangle at the bottom of a &lt;em&gt;TODO&lt;/em&gt; file &lt;em&gt;forever&lt;/em&gt;. There, it may cause regret (“I’ll probably never be able to do this”) or anxiety (“I wish I could do this if only I had some more time”).&lt;/p&gt;
 
-<entry>
-  <title type="html"><![CDATA[Software bloat makes me sad]]></title>
-  <link rel="alternate" type="text/html" href="/articles/-software-bloat-makes-me-sad" />
-  <id>/articles/-software-bloat-makes-me-sad</id>
-  <published>2015-07-03T00:00:00+02:00</published>
-  <updated>2015-07-03T00:00:00+02:00</updated>
-  <author>
-    <name>Remarkably Restrained</name>
-    <uri></uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;p&gt;Most software is bloated, meaning: it’s taking both a lot more space to store (both in memory and on disk) and more time to run than required. A few examples:&lt;/p&gt;
+&lt;p&gt;Here’s a neat trick: write briefly about the plan as if you’ve already done it. And then remove the plan from your &lt;em&gt;TODO&lt;/em&gt; file forever.&lt;/p&gt;
+
+&lt;p&gt;Writing about the plan gives at least part of the satisfaction of actually executing it. (In fact, this is precisely one of the dangers of making grandiose public declarations of intent: doing so gives us part of the reward already, and as such might actually make us less likely to achieve our goals. By using the “things I’ll never do” strategy, we use this danger to our advantage.)&lt;/p&gt;
+
+&lt;p&gt;Of course, writing about a plan can be done in much less time than actually doing it. In that sense it is a solution for the fact that there is never enough time.&lt;/p&gt;
+
+&lt;p&gt;Finally, by writing about them, we might be able to let them go.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 28 Jun 2018 00:00:00 +0200</pubDate>
+        <link>/things-ill-never-do/</link>
+        <guid isPermaLink="true">/things-ill-never-do/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Software bloat makes me sad</title>
+        <description>&lt;p&gt;Most software is bloated, meaning: it’s taking both a lot more space to store (both in memory and on disk) and more time to run than required. A few examples:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -79,7 +86,7 @@
 
 &lt;p&gt;This fundamental lack of care for building unbloated software is directly reflected in the lack of readily available tools which have performance as a focus. &lt;sup id=&quot;fnref:knowledge-disclaimer&quot;&gt;&lt;a href=&quot;#fn:knowledge-disclaimer&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;Of course, tools exist which have performance as their focus. The generally available ones, however, all focus on “testing” or “analyzing”. In other words, they are empirical in nature, as they focus on &lt;em&gt;measuring&lt;/em&gt; performance generally, or &lt;em&gt;measuring&lt;/em&gt; which particular parts of the software are bloated. This fits with the earlier observation that the reduction bloat of software only receives attention once it becomes a “noticable problem”. Surely there is a place for empirical tools and methods in general. However, if they form the prime method of understanding artifacts of our own creation, we must surely become suspicious.  &lt;/p&gt;
+&lt;p&gt;Of course, tools exist which have performance as their focus. The generally available ones, however, all focus on “testing” or “analyzing”. In other words, they are empirical in nature, as they focus on &lt;em&gt;measuring&lt;/em&gt; performance generally, or &lt;em&gt;measuring&lt;/em&gt; which particular parts of the software are bloated. This fits with the earlier observation that the reduction bloat of software only receives attention once it becomes a “noticable problem”. Surely there is a place for empirical tools and methods in general. However, if they form the prime method of understanding artifacts of our own creation, we must surely become suspicious.&lt;/p&gt;
 
 &lt;p&gt;A particular area of interest are the tools we have for decomposition &amp;amp; composition: breaking complex systems into parts that can be understood, and building systems out of such parts. Many tools for decomposition exist, such as dividing a system into different processes, modules, libraries, classes, methods etc. However, performance considerations can generally not be specified at the interfaces across which we decompose. On the contrary, they are often explicitly considered to be an implementation detail that we must abstract away from.&lt;/p&gt;
 
@@ -107,27 +114,23 @@ Given the lack of focus on containing bloat, and the many other pressures on pro
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:knowledge-disclaimer&quot;&gt;
-      &lt;p&gt;I should put up a big disclaimer here: perhaps such tools &lt;em&gt;do&lt;/em&gt; exist in particular specializations, such as real time software or games; In any case they did not receive major uptake in the general field of software development. &lt;a href=&quot;#fnref:knowledge-disclaimer&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;I should put up a big disclaimer here: perhaps such tools &lt;em&gt;do&lt;/em&gt; exist in particular specializations, such as real time software or games; In any case they did not receive major uptake in the general field of software development.&amp;nbsp;&lt;a href=&quot;#fnref:knowledge-disclaimer&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
-
-  &lt;p&gt;&lt;a href=&quot;/articles/-software-bloat-makes-me-sad&quot;&gt;Software bloat makes me sad&lt;/a&gt; was originally published by Remarkably Restrained at &lt;a href=&quot;&quot;&gt;Remarkably Restrained&lt;/a&gt; on July 03, 2015.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Some thoughts on Software Development]]></title>
-  <link rel="alternate" type="text/html" href="/articles/some-thoughts" />
-  <id>/articles/some-thoughts</id>
-  <published>2015-06-15T00:00:00+02:00</published>
-  <updated>2015-06-15T00:00:00+02:00</updated>
-  <author>
-    <name>Remarkably Restrained</name>
-    <uri></uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;p&gt;In the past few months I’m having some recurring thoughts and questions&lt;sup id=&quot;fnref:alan-kay&quot;&gt;&lt;a href=&quot;#fn:alan-kay&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. What follows is mostly an attempt to force myself to structure these thougts and reach out to others that may share some insights on the subject. In other words: “warning: incoming rant.”&lt;/p&gt;
+</description>
+        <pubDate>Fri, 03 Jul 2015 00:00:00 +0200</pubDate>
+        <link>/articles/-software-bloat-makes-me-sad/</link>
+        <guid isPermaLink="true">/articles/-software-bloat-makes-me-sad/</guid>
+        
+        
+        <category>articles</category>
+        
+      </item>
+    
+      <item>
+        <title>Some thoughts on Software Development</title>
+        <description>&lt;p&gt;In the past few months I’m having some recurring thoughts and questions&lt;sup id=&quot;fnref:alan-kay&quot;&gt;&lt;a href=&quot;#fn:alan-kay&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. What follows is mostly an attempt to force myself to structure these thougts and reach out to others that may share some insights on the subject. In other words: “warning: incoming rant.”&lt;/p&gt;
 
 &lt;p&gt;The subject of these questions is the current state of our software (I hesitate to say: Software Engineering, but I suppose it is implied). The general theme is: “why is the quality of our software so low?”. Some of the questions are:&lt;/p&gt;
 
@@ -170,31 +173,34 @@ Given the lack of focus on containing bloat, and the many other pressures on pro
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:alan-kay&quot;&gt;
-      &lt;p&gt;I’m not quite sure what exactly was at the root of these thoughts, but viewing Alan Kay’s talk at OOPSLA 1997, &lt;a href=&quot;https://www.youtube.com/watch?v=oKg1hTOQXoY&quot;&gt;The computer revolution hasn’t happened yet&lt;/a&gt;, has surely played a role &lt;a href=&quot;#fnref:alan-kay&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;I’m not quite sure what exactly was at the root of these thoughts, but viewing Alan Kay’s talk at OOPSLA 1997, &lt;a href=&quot;https://www.youtube.com/watch?v=oKg1hTOQXoY&quot;&gt;The computer revolution hasn’t happened yet&lt;/a&gt;, has surely played a role&amp;nbsp;&lt;a href=&quot;#fnref:alan-kay&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
-
-  &lt;p&gt;&lt;a href=&quot;/articles/some-thoughts&quot;&gt;Some thoughts on Software Development&lt;/a&gt; was originally published by Remarkably Restrained at &lt;a href=&quot;&quot;&gt;Remarkably Restrained&lt;/a&gt; on June 15, 2015.&lt;/p&gt;</content>
-</entry>
-
-
-<entry>
-  <title type="html"><![CDATA[Remarkably restrained]]></title>
-  <link rel="alternate" type="text/html" href="/articles/remarkably-restrained" />
-  <id>/articles/remarkably-restrained</id>
-  <published>2015-02-24T00:00:00+01:00</published>
-  <updated>2015-02-24T00:00:00+01:00</updated>
-  <author>
-    <name>Remarkably Restrained</name>
-    <uri></uri>
-    <email></email>
-  </author>
-  <content type="html">&lt;p&gt;The more we allow our code to say the less we can be say about it.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 15 Jun 2015 00:00:00 +0200</pubDate>
+        <link>/articles/some-thougts/</link>
+        <guid isPermaLink="true">/articles/some-thougts/</guid>
+        
+        
+        <category>articles</category>
+        
+      </item>
+    
+      <item>
+        <title>Remarkably restrained</title>
+        <description>&lt;p&gt;The more we allow our code to say the less we can be say about it.&lt;/p&gt;
 
 &lt;p&gt;We must therefore measure the effectiveness of our tools not by how much we can do with them, but by how much we cannot do.&lt;/p&gt;
-
-  &lt;p&gt;&lt;a href=&quot;/articles/remarkably-restrained&quot;&gt;Remarkably restrained&lt;/a&gt; was originally published by Remarkably Restrained at &lt;a href=&quot;&quot;&gt;Remarkably Restrained&lt;/a&gt; on February 24, 2015.&lt;/p&gt;</content>
-</entry>
-
-</feed>
+</description>
+        <pubDate>Tue, 24 Feb 2015 00:00:00 +0100</pubDate>
+        <link>/articles/remarkably-restrained/</link>
+        <guid isPermaLink="true">/articles/remarkably-restrained/</guid>
+        
+        
+        <category>articles</category>
+        
+      </item>
+    
+  </channel>
+</rss>
