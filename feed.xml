@@ -5,9 +5,77 @@
     <description>the title is misleading</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 26 Jul 2019 22:49:21 +0200</pubDate>
-    <lastBuildDate>Fri, 26 Jul 2019 22:49:21 +0200</lastBuildDate>
+    <pubDate>Fri, 02 Aug 2019 17:24:33 +0200</pubDate>
+    <lastBuildDate>Fri, 02 Aug 2019 17:24:33 +0200</lastBuildDate>
     <generator>Jekyll v3.4.1</generator>
+    
+      <item>
+        <title>Keyboard lag and frustration</title>
+        <description>&lt;p&gt;A recent &lt;a href=&quot;https://danluu.com/keyboard-latency/&quot;&gt;series&lt;/a&gt; &lt;a href=&quot;https://danluu.com/input-lag/&quot;&gt;of&lt;/a&gt; &lt;a href=&quot;https://danluu.com/term-latency/&quot;&gt;articles&lt;/a&gt; about measuring input lag on modern devices by Dan Luu got me wondering: what in particular is it that makes laggy input annoying or frustrating?&lt;/p&gt;
+
+&lt;p&gt;I’m very enthusiastic about his work and the implied goal for modern computing. However, I think he’s missing something when he says the following:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Why don’t people complain about keyboard-to-display latency the way they complain stylus-to-display latency or VR latency? My theory is that, for both VR and tablets, people have a lot of experience with a much lower latency application. [..] But input-to-display latency is so bad for every application that most people just expect terrible latency.&lt;/p&gt;
+
+  &lt;p&gt;An alternate theory might be that keyboard and mouse input are fundamentally different from tablet input in a way that makes latency less noticeable. Even without any data, I’d find that implausible because, when I access a remote terminal in a way that adds tens of milliseconds of extra latency, I find typing to be noticeably laggy. And it turns out that when extra latency is A/B tested, people can and do notice latency in the range we’re discussing here.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;a-theory-for-frustration&quot;&gt;A theory for frustration&lt;/h3&gt;
+
+&lt;p&gt;The problem with this line of reasoning is that it conflates 2 fundamentally unrelated things: the ability to notice latency, and the amount of complaints about it. I have a different theory: complaints are driven by how people feel, and people complain less about keyboard-to-display latency, because it’s &lt;em&gt;fundamentally less frustrating&lt;/em&gt; in most cases.&lt;/p&gt;
+
+&lt;p&gt;To see why that might be the case, let’s consider why input lag might be frustrating in the first place. I’d say the frustration flows from the fact that when you’re inputting, you’re trying to achieve a goal. The fact that there is lag makes it either harder to achieve that goal, or harder to get feedback on whether you have achieved it.&lt;/p&gt;
+
+&lt;p&gt;First, there are at least two general cases in which input lag makes it directly harder to achieve a goal:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Any time the timing of the input matters for the outcome. An example could be: shooting at a moving target in a game.&lt;/li&gt;
+  &lt;li&gt;Any time you’re waiting for the system to provide information to you. Here the achieving of the goal is delayed by at least the time you’re waiting for that information. Examples could be: hitting the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;tab&amp;gt;&lt;/code&gt; key and waiting for the system tell you whether the word can be completed, and if so, how.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Second, input lag can mess with your feedback loop: whenever you set out to achieve a goal, you’ll want to get feedback on whether you’re on track for achieving it, or not. The input lag delays that feedback loop directly by deferring the moment you can correct any problems until after the lag. More importantly, however, it allows for doubts (a negative emotion) to form while you are waiting. Did I achieve what I wanted, or did something go wrong?&lt;/p&gt;
+
+&lt;p&gt;When humans and machines interact, there are 2 major sources of such failures: the human and the machine. Thus, when providing inputs, we’re generally looking for feedback that neither have failed. Examples:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Did I correctly depress that key? Or did I perhaps hit the wrong key? (on a keyboard)&lt;/li&gt;
+  &lt;li&gt;Did I draw the shape I wanted to draw? (on a tablet)&lt;/li&gt;
+  &lt;li&gt;Did my computer just lock up?&lt;/li&gt;
+  &lt;li&gt;When working remotely: did the network fail on me?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;an-alternative-source-of-feedback&quot;&gt;An alternative source of feedback&lt;/h3&gt;
+
+&lt;p&gt;Now, finally, why might input lag for keyboards be less frustrating than on tablets?&lt;/p&gt;
+
+&lt;p&gt;My theory is: because the keyboards themselves provide an important source of feedback. Namely: the tactile feedback when a key is pressed tells you that you did what you set out to do. At the very least it’s possible to feel whether &lt;em&gt;something&lt;/em&gt; was pressed or not; experienced typists will also easily be able to tell whether it was the correct key or not. And thus you yourself are taken out of the equation as a potential source of error, removing any self-doubt while waiting for the screen to catch up with your action.&lt;/p&gt;
+
+&lt;p&gt;When you’re working on a tablet, you’re never provided with such tactile feedback, and are thus forced to wait for the lag to complete whether a mistake was made or not.&lt;/p&gt;
+
+&lt;p&gt;For me, this alternative source of feedback explains sufficiently why people complain less about keyboard lag than e.g. lag on tablets.&lt;/p&gt;
+
+&lt;h3 id=&quot;key-travel&quot;&gt;Key travel&lt;/h3&gt;
+
+&lt;p&gt;This theory also explains (again, for me) some of the joy of using a clicky mechanical keyboard: the big fat click provides lots of feedback. Reversely: when you accidentally lightly touch the wrong key, you’ll know that you haven’t actually pressed it precisely because the big click doesn’t happen in that case.&lt;/p&gt;
+
+&lt;p&gt;In fact, Dan mentions in some of his articles that key travel is an important source of lag for cluncky keyboards: it simply takes longer to complete the action of pressing a key on such keyboards. I don’t dispute that, but given the above I think we should realize there’s a trade-off here: the key-travel gives you a certain kind of feedback earlier (namely: tactical feedback) while its mechanics ensure that the actual effect of your action will happen somewhat later.&lt;/p&gt;
+
+&lt;p&gt;It’s precisely this trade-off that is reflected in the common distinction between “good for gaming” and “good for typing” keyboards. If you’re gaming, the thing that matters most to you is to actually get your inputs into the game A.S.A.P. But if you’re typing, you’ll often know a number of letters to type in advance, and you just want any feedback on any failures to input those in the correct sequence. To do this you don’t even need the screen at all, as long as you have a good (and fast) alternative source of feedback.&lt;/p&gt;
+
+&lt;h3 id=&quot;experimental-setup&quot;&gt;Experimental setup&lt;/h3&gt;
+&lt;p&gt;Of course, all of this is just a personal theory… &lt;a href=&quot;/things-ill-never-do/&quot;&gt;I should really put it to the test in some experiments&lt;/a&gt;. As a rough sketch of such an experimental setup, the following:&lt;/p&gt;
+
+&lt;p&gt;We had test subjects do various typing assignments on both a normal keyboard and some keyboard without tactile feedback (e.g. an on-screen keyboard), while varying the amount of input lag in both setups. We then somehow measured their satisfaction with the experience.&lt;/p&gt;
+
+&lt;p&gt;We hypothesized that the amount of experienced frustrations (“complaints”) will vary as a function of the amount of input lag, but that this function rises much more sharply in the scenario without tactile feedback.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 02 Aug 2019 00:00:00 +0200</pubDate>
+        <link>/keyboard-lag-and-frustration/</link>
+        <guid isPermaLink="true">/keyboard-lag-and-frustration/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Things I'll never do</title>
