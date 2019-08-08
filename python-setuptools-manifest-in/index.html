@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  <title>Python setuptools' MANIFEST.in explained</title>
+  <meta name="description" content="TL;DR: don’t use MANIFEST.in when packaging in Python using setuptools; use the setuptools_scm package instead.
+
+">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python setuptools' MANIFEST.in explained">
+  <meta name="twitter:description" content="TL;DR: don’t use MANIFEST.in when packaging in Python using setuptools; use the setuptools_scm package instead.
+
+">
+  
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Python setuptools' MANIFEST.in explained">
+  <meta property="og:description" content="TL;DR: don’t use MANIFEST.in when packaging in Python using setuptools; use the setuptools_scm package instead.
+
+">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1565335496968468737">
+  <link rel="canonical" href="/python-setuptools-manifest-in/">
+  <link rel="alternate" type="application/rss+xml" title="Remarkably Restrained" href="/feed.xml">
+</head>
+
+
+  <body>
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/" title="Remarkably Restrained — Home">
+          <h1 class="panel-cover__title panel-title">Remarkably Restrained</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">the title is misleading</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/feed.xml" title="Subscribe to RSS" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2019-08-08 00:00" class="post-meta__date date">8 Aug 2019</time>
+      
+    </div>
+    <h1 class="post-title">Python setuptools' MANIFEST.in explained</h1>
+  </header>
+
+  <section class="post">
+    <p>TL;DR: don’t use <code class="highlighter-rouge">MANIFEST.in</code> when packaging in Python using <code class="highlighter-rouge">setuptools</code>; use the <code class="highlighter-rouge">setuptools_scm</code> package instead.</p>
+
+<hr />
+
+<p>In the mess that is Python packaging using setuptools, some things are actually best understood in their historical context. One of those things is the file <code class="highlighter-rouge">MANIFEST.in</code>.</p>
+
+<h3 id="a-world-without-vcs">A world without VCS</h3>
+
+<p>Remember the times from before (general adoption of) version control systems? This is the world <code class="highlighter-rouge">MANIFEST.in</code> was devised in.</p>
+
+<p>In that world, imagine you want to distribute your Python project in the form of a package of source files for others to use. That is, want to make a source distribution, A.K.A. <code class="highlighter-rouge">sdist</code>.</p>
+
+<p>Such a distribution will be based on the directory you’re developing the project in. However, because this is your local working directory, it will contain all kinds of files which are not part of the project’s source, but part of your own development process such as the configuration of your IDE or files left behind by your text editor. Which of those files should be included as part of your distribution?</p>
+
+<p>Of course, <code class="highlighter-rouge">disutils</code> can guess, and <a href="https://docs.python.org/2/distutils/sourcedist.html#specifying-the-files-to-distribute">in fact it does guess</a>. Some such guesses are “all Python source files implied by the <code class="highlighter-rouge">py_modules</code> and <code class="highlighter-rouge">packages</code> options”, <code class="highlighter-rouge">README.txt</code> and <code class="highlighter-rouge">setup.py</code>. However, at some point guessing will be insuffienct.</p>
+
+<p>This is were <code class="highlighter-rouge">MANIFEST.in</code> comes in: simply specify which files to include using various inclusion and exclusion patterns.</p>
+
+<p>In the context of building (using <code class="highlighter-rouge">setup.py build</code> or some derivate thereof such as <code class="highlighter-rouge">setup.py bdist_wheel</code>) we are faced with more or less the same problem: which data files in the project should be included in the build? Thus, <a href="https://github.com/pypa/setuptools/commit/4cd66c4147bef3ee8096f7161d407fb37582f1c9"><code class="highlighter-rouge">MANIFEST.in</code> was used as the answer to that question too</a> – as long as you set the parameter <code class="highlighter-rouge">include_package_data</code> to <code class="highlighter-rouge">True</code>.</p>
+
+<h3 id="enter-the-vcs">Enter the VCS</h3>
+
+<p>In 2019, we don’t live in a world from before the general adoption of version control systems. If you have your project in source control, the question “which files constitute the source code of this project?”, as opposed to “which files are local to a particular developer’s environment?” is already answered: the files under source control constitute the source code.</p>
+
+<p>This is also the position <code class="highlighter-rouge">setuptools</code> seems to take, since it <a href="https://github.com/pypa/setuptools/commit/d3add44007ad72fc795297dd208d9a37ac4b54a3">introduced automatic inclusion of files under source control in the then popular SVN in 2005</a>. This behavior was later <a href="https://github.com/pypa/setuptools/commit/97d43ce576112fdda6d2fa1cecf4b46cc85b04c2">generalized to be able to support arbitrary version control systems using plugins</a> and the <a href="https://github.com/pypa/setuptools/commit/a7e5648bda737683c4ad220e61c44c1d17b73d87">svn-specific implementation was even removed at some point</a>.</p>
+
+<p>If you read this in 2019, your VCS is most likely either <code class="highlighter-rouge">git</code> or <code class="highlighter-rouge">hg</code>, in which case the package <a href="https://pypi.org/project/setuptools-scm/"><code class="highlighter-rouge">setuptools_scm</code></a> provides the plugins you need. Add the following incantation to <code class="highlighter-rouge">setup.py</code> to ensure that files you have under source control are packaged:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!python</span>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="o">...</span><span class="p">,</span>
+    <span class="n">use_scm_version</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span><span class="s">'setuptools_scm'</span><span class="p">],</span>
+    <span class="o">...</span><span class="p">,</span>
+<span class="p">)</span> 
+</code></pre>
+</div>
+
+<p>And no more need for <code class="highlighter-rouge">MANIFEST.in</code>!</p>
+
+<h3 id="caveats">Caveats</h3>
+
+<p>Does this really mean we can ditch <code class="highlighter-rouge">MANIFEST.in</code> altogether? Almost… a few final caveats:</p>
+
+<ul>
+  <li>
+    <p>If you don’t use an scm, you’ll still need <code class="highlighter-rouge">MANIFEST.in</code>. Counterpoint: you should really-really-really use an scm, even for the smallest of projects.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">setuptools_scm</code> has more functionality than determining which files to include in your package. It also derives the version number for the package from scm’s tags. There is no package that provides the former functionality, but not the latter. Counterpoint: you should really tag versions in your version management tool, and you should really not wish to duplicate this behavior manually elsewhere, so there is no need for a package which provides just one of these behaviors.</p>
+  </li>
+  <li>
+    <p>There may be cases in which your concept of a “source distribution” differs from “all the stuff under source control”. Common examples are tests, debugging tools, shell scripts, documentation, etc. The counterpoint is that you really shouldn’t try to make such a distinction. This is <a href="https://github.com/pypa/setuptools_scm/issues/190#issuecomment-492339946">the position Jason R. Coombs takes</a>:</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>In my opinion the sdist is meant to be more than just a copy of the Python functionality, but is meant to be a distributable copy of the source code. I would expect someone to be able to download the sdist, extract it, and develop on the project much like they would if cloning the repo.</p>
+</blockquote>
+
+<p>Note that this final “problem” applies exclusively to source distributions: builds (and wheels) are automatically limited to files living under the packages as specified by the <code class="highlighter-rouge">packages</code> parameter.</p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2019 . All rights reserved.</span>
+</footer>
+
+    </div>
+  </body>
+</html>

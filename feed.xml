@@ -5,9 +5,80 @@
     <description>the title is misleading</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 02 Aug 2019 17:24:33 +0200</pubDate>
-    <lastBuildDate>Fri, 02 Aug 2019 17:24:33 +0200</lastBuildDate>
+    <pubDate>Thu, 08 Aug 2019 21:24:56 +0200</pubDate>
+    <lastBuildDate>Thu, 08 Aug 2019 21:24:56 +0200</lastBuildDate>
     <generator>Jekyll v3.4.1</generator>
+    
+      <item>
+        <title>Python setuptools' MANIFEST.in explained</title>
+        <description>&lt;p&gt;TL;DR: don’t use &lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt; when packaging in Python using &lt;code class=&quot;highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;; use the &lt;code class=&quot;highlighter-rouge&quot;&gt;setuptools_scm&lt;/code&gt; package instead.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In the mess that is Python packaging using setuptools, some things are actually best understood in their historical context. One of those things is the file &lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-world-without-vcs&quot;&gt;A world without VCS&lt;/h3&gt;
+
+&lt;p&gt;Remember the times from before (general adoption of) version control systems? This is the world &lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt; was devised in.&lt;/p&gt;
+
+&lt;p&gt;In that world, imagine you want to distribute your Python project in the form of a package of source files for others to use. That is, want to make a source distribution, A.K.A. &lt;code class=&quot;highlighter-rouge&quot;&gt;sdist&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Such a distribution will be based on the directory you’re developing the project in. However, because this is your local working directory, it will contain all kinds of files which are not part of the project’s source, but part of your own development process such as the configuration of your IDE or files left behind by your text editor. Which of those files should be included as part of your distribution?&lt;/p&gt;
+
+&lt;p&gt;Of course, &lt;code class=&quot;highlighter-rouge&quot;&gt;disutils&lt;/code&gt; can guess, and &lt;a href=&quot;https://docs.python.org/2/distutils/sourcedist.html#specifying-the-files-to-distribute&quot;&gt;in fact it does guess&lt;/a&gt;. Some such guesses are “all Python source files implied by the &lt;code class=&quot;highlighter-rouge&quot;&gt;py_modules&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;packages&lt;/code&gt; options”, &lt;code class=&quot;highlighter-rouge&quot;&gt;README.txt&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;. However, at some point guessing will be insuffienct.&lt;/p&gt;
+
+&lt;p&gt;This is were &lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt; comes in: simply specify which files to include using various inclusion and exclusion patterns.&lt;/p&gt;
+
+&lt;p&gt;In the context of building (using &lt;code class=&quot;highlighter-rouge&quot;&gt;setup.py build&lt;/code&gt; or some derivate thereof such as &lt;code class=&quot;highlighter-rouge&quot;&gt;setup.py bdist_wheel&lt;/code&gt;) we are faced with more or less the same problem: which data files in the project should be included in the build? Thus, &lt;a href=&quot;https://github.com/pypa/setuptools/commit/4cd66c4147bef3ee8096f7161d407fb37582f1c9&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt; was used as the answer to that question too&lt;/a&gt; – as long as you set the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;include_package_data&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;enter-the-vcs&quot;&gt;Enter the VCS&lt;/h3&gt;
+
+&lt;p&gt;In 2019, we don’t live in a world from before the general adoption of version control systems. If you have your project in source control, the question “which files constitute the source code of this project?”, as opposed to “which files are local to a particular developer’s environment?” is already answered: the files under source control constitute the source code.&lt;/p&gt;
+
+&lt;p&gt;This is also the position &lt;code class=&quot;highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; seems to take, since it &lt;a href=&quot;https://github.com/pypa/setuptools/commit/d3add44007ad72fc795297dd208d9a37ac4b54a3&quot;&gt;introduced automatic inclusion of files under source control in the then popular SVN in 2005&lt;/a&gt;. This behavior was later &lt;a href=&quot;https://github.com/pypa/setuptools/commit/97d43ce576112fdda6d2fa1cecf4b46cc85b04c2&quot;&gt;generalized to be able to support arbitrary version control systems using plugins&lt;/a&gt; and the &lt;a href=&quot;https://github.com/pypa/setuptools/commit/a7e5648bda737683c4ad220e61c44c1d17b73d87&quot;&gt;svn-specific implementation was even removed at some point&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you read this in 2019, your VCS is most likely either &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;hg&lt;/code&gt;, in which case the package &lt;a href=&quot;https://pypi.org/project/setuptools-scm/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setuptools_scm&lt;/code&gt;&lt;/a&gt; provides the plugins you need. Add the following incantation to &lt;code class=&quot;highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; to ensure that files you have under source control are packaged:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!python&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;use_scm_version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;setup_requires&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'setuptools_scm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And no more need for &lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt;!&lt;/p&gt;
+
+&lt;h3 id=&quot;caveats&quot;&gt;Caveats&lt;/h3&gt;
+
+&lt;p&gt;Does this really mean we can ditch &lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt; altogether? Almost… a few final caveats:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you don’t use an scm, you’ll still need &lt;code class=&quot;highlighter-rouge&quot;&gt;MANIFEST.in&lt;/code&gt;. Counterpoint: you should really-really-really use an scm, even for the smallest of projects.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setuptools_scm&lt;/code&gt; has more functionality than determining which files to include in your package. It also derives the version number for the package from scm’s tags. There is no package that provides the former functionality, but not the latter. Counterpoint: you should really tag versions in your version management tool, and you should really not wish to duplicate this behavior manually elsewhere, so there is no need for a package which provides just one of these behaviors.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;There may be cases in which your concept of a “source distribution” differs from “all the stuff under source control”. Common examples are tests, debugging tools, shell scripts, documentation, etc. The counterpoint is that you really shouldn’t try to make such a distinction. This is &lt;a href=&quot;https://github.com/pypa/setuptools_scm/issues/190#issuecomment-492339946&quot;&gt;the position Jason R. Coombs takes&lt;/a&gt;:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In my opinion the sdist is meant to be more than just a copy of the Python functionality, but is meant to be a distributable copy of the source code. I would expect someone to be able to download the sdist, extract it, and develop on the project much like they would if cloning the repo.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Note that this final “problem” applies exclusively to source distributions: builds (and wheels) are automatically limited to files living under the packages as specified by the &lt;code class=&quot;highlighter-rouge&quot;&gt;packages&lt;/code&gt; parameter.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 08 Aug 2019 00:00:00 +0200</pubDate>
+        <link>/python-setuptools-manifest-in/</link>
+        <guid isPermaLink="true">/python-setuptools-manifest-in/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Keyboard lag and frustration</title>
